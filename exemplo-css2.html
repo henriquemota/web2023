@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS</title>
+  <style type="text/css">
+    p {
+      background-color: #0000ff;
+      color: #fff;
+      font-weight: 600;
+      padding: 16px;
+      margin: 60px 0 0 0;
+      border-radius: 8px 32px 32px 0;
+    }
+    .par {
+      color: #ff0000;
+      font-weight: lighter;
+    }
+    #titulo {
+      color: #fff;
+      font-weight: bolder;
+      background-color: #ff0000;
+      margin-bottom: 60px;
+    }
+    input[type='text'] {
+      margin: 16px;
+      border: 8px solid #ff0000;
+    }
+    input[type='email'] {
+      margin: 4px;
+      border: 4px solid #00ff00;
+      border-radius: 4px;
+      padding: 16px;
+    }
+    input[checked] {
+      margin-right: 64px;
+    }
+    h1 + p {
+      font-size: 32px;
+      font-weight: lighter;
+      background-color: #fff;
+      border: none;
+      color: #000;
+    }
+    body {
+      background-image: url('https://images.ecycle.com.br/wp-content/uploads/2021/05/20195924/o-que-e-paisagem.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div>
+      <p>primeiro paragrafo</p>  
+      <h1>primeiro cabecalho</h1>  
+      <p>segundo paragrafo</p>  
+    </div>
+  </section>
+
+    <p id="titulo">Meu título aqui</p>
+    <p>Meu primeiro paragrafo</p>
+    <p class="par">Meu segundo paragrafo</p>
+    <p>Meu terceiro paragrafo</p>
+    <h1>outro cabeçalho</h1>
+    <p class="par">Meu quarto paragrafo</p>
+
+    <input type="text">
+    <input type="checkbox" checked>
+    <input type="checkbox" checked>
+    <input type="checkbox" >
+    <input type="email" >
+
+</body>
+</html>
