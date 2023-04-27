@@ -27,21 +27,25 @@
     border-top: 2px solid #000;
    } 
    main {
-     padding-top: 88px;
-     padding-bottom: 44px; 
+     padding-top: 80px;
+     padding-bottom: 40px; 
      height: 100vh;
    }
    aside {
-    position: absolute;
+    position: fixed;
     height: 100vh;
-    width: 30vw;
+    width: calc(30vw - 16px);
     border-right: 1px solid #000;
-   }
-   article {
+    padding: 8px;
+    background-color: #ff8c00;
+  }
+  article {
     position: absolute;
     height: 100vh;
-    width: 70vw;    
+    width: calc(70vw - 16px);    
     left: 30vw;
+    padding: 8px;
+    background-color: #a9a9ad;
   }
   </style>
 </head>
@@ -51,7 +55,12 @@
   </header>
   <main>
     <aside>
-      Menu lateral
+      <p>Menu principal</p>
+      <ul>
+        <li>Home</li>
+        <li>Clientes</li>
+        <li>Produtos</li>
+      </ul>
     </aside>
     <article>
       Article
