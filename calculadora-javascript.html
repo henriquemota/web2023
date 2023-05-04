@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+
+  <style type="text/css">
+    html, body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #results-panel ,
+    #numbers-panel {
+      width: calc(180px + 12px);
+    }
+    #results-panel {
+      height: 28px;
+      border: 1px solid #000;
+      padding: 2px;
+      border-radius: 4px;
+      font-size: 24px;
+      margin: 16px auto;
+    }
+    #numbers-panel input[type='button'] {
+      margin: 2px;
+      width: 60px;
+      height: 60px;
+    }
+  </style>
+  <script>
+    function makeButtons() {
+      let numeros = [0,1,2,3,4,5,6,7,8,9,'CE','=']
+      const dv = document.getElementById('numbers-panel')
+      numeros.forEach(function(element) {
+        dv.innerHTML += '<input type="button" class="btn-numero" value="'+element+'" onClick="setValue(this)" />'
+      })
+    }
+    function setValue (element) {
+      const dv = document.getElementById('results-panel')
+      if (element.value === 'CE') {
+        dv.innerText = ''
+      } else {
+        dv.innerText += element.value
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <div id="calculadora">
+    <div id="results-panel"></div>
+    <div id="numbers-panel">
+    </div>
+  </div>
+
+  <script>
+    makeButtons()
+  </script>
+  
+</body>
+</html>

@@ -1,19 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mensagem javascript</title>
+  <title>Mensagem javascript</title> 
+  <style>
+    #meu-div {
+      background-color: black;
+      color: white;
+      padding: 8px;
+      margin: 8px auto;
+    }
+  </style>
+  
+  <script>
+    function sayHello(msg){
+      alert('Ola mundo '+msg+'!')
+    }
+    function resultado() {
+      let dv = document.getElementById('meu-div')
+      dv.innerHTML += '<ul><li>aqui</li></ul>'
+    }
+  </script>
   
 </head>
 <body>
-  <p>Informe seu nome</p>
-  <input type="text" id="nome" />
   <input 
     type="button" 
     value="Clique aqui" 
-    onclick="alert(`Bem vindo ${document.getElementById('nome').value}`)"
+    onclick="sayHello('turma dev web')"
   />
+  <div id="meu-div">
+    <p>O resultado do jogo do ceará foi</p>
+  </div>
+  <script>
+    resultado()
+  </script>
 </body>
 </html>
