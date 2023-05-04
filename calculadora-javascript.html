@@ -14,7 +14,13 @@
       justify-content: center;
       align-items: center;
     }
-    #results-panel ,
+    #console {
+      display: flex;
+      flex-direction: row;
+    }
+    #results-panel {
+      width: calc(180px + 12px + 60px);
+    }
     #numbers-panel {
       width: calc(180px + 12px);
     }
@@ -31,8 +37,17 @@
       width: 60px;
       height: 60px;
     }
+    #operators-panel {
+      width: 64px;
+    }
+    #operators-panel input[type='button'] {
+      margin: 2px;
+      width: 60px;
+      height: 60px;
+    }
   </style>
   <script>
+    const mem = []
     function makeButtons() {
       let numeros = [0,1,2,3,4,5,6,7,8,9,'CE','=']
       const dv = document.getElementById('numbers-panel')
@@ -40,12 +55,34 @@
         dv.innerHTML += '<input type="button" class="btn-numero" value="'+element+'" onClick="setValue(this)" />'
       })
     }
+    function makeOperators() {
+      let operators = ['+','-','*', '/']
+      const dv = document.getElementById('operators-panel')
+      operators.forEach(function(element) {
+        dv.innerHTML += '<input type="button" class="btn-operator" value="'+element+'" onClick="setOperator(this)" />'
+      })
+    }
+    function setOperator(element) {
+      const results = document.getElementById('results-panel')
+      mem.push(results.innerText)
+      mem.push(element.value)
+      results.innerText = ''
+      console.log(mem)
+    }
     function setValue (element) {
       const dv = document.getElementById('results-panel')
-      if (element.value === 'CE') {
-        dv.innerText = ''
-      } else {
-        dv.innerText += element.value
+      switch (element.value) {
+        case 'CE':
+          dv.innerText = ''
+          mem.length=0
+          console.log(mem)
+          break;
+        case '=':
+          mem.push(element.value)
+          break;
+        default:
+          dv.innerText += element.value
+          break;
       }
     }
   </script>
@@ -54,12 +91,15 @@
 
   <div id="calculadora">
     <div id="results-panel"></div>
-    <div id="numbers-panel">
+    <div id="console">
+      <div id="numbers-panel"></div>
+      <div id="operators-panel"></div>
     </div>
   </div>
 
   <script>
     makeButtons()
+    makeOperators()
   </script>
   
 </body>
