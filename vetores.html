@@ -14,9 +14,23 @@
   <header class="bg-light p-4 border-bottom">
     <div id="carrinho"></div>
   </header>
-  <main class="p-4">
-      <section id="produtos" class="row gap-2">
-      </section>
+  <main class="p-4 row">
+    <section id="produtos" class="col row gap-1">
+    </section>
+    <aside class="col-sm-4">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Produto</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </aside>
   </main>
 
   <script>
@@ -25,6 +39,16 @@
     function addCart(item) {
       cart.push(item)
       exibirTotalCarrinho()
+      exibirCarrinho()
+    }
+
+    function removeItem(index) {
+      if (confirm('Deseja realmente excluir?')) {
+        delete cart[index]
+        // cart.splice(1, index)
+        exibirCarrinho()
+        exibirTotalCarrinho()
+      }
     }
 
     function exibirTotalCarrinho() {
@@ -39,6 +63,24 @@
                             <span class="visually-hidden">unread messages</span>
                           </span>
                           `
+    }
+
+    function exibirCarrinho() {
+      const tbody = document.getElementsByTagName('tbody')
+      tbody[0].innerHTML = null
+      for (let i = 0; i < cart.length; i++) {
+        tbody[0].innerHTML += `
+          <tr>
+            <td>${i+1}</td>  
+            <td>${cart[i]}</td>  
+            <td class="d-grid">
+              <button class="btn btn-danger" onClick="removeItem(${i})">
+                excluir
+              </button>
+            </td>  
+          </tr>
+        `
+      }
     }
 
     function init() {
@@ -66,6 +108,7 @@
 
     init()  
     exibirTotalCarrinho()
+    exibirCarrinho()
 
   </script>
   
