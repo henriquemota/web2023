@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<title>Incorporando Javascript em Páginas HTML</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    label, input{
+      display: block;
+      margin: 16px;
+    }
+    main {
+      margin: 0;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-color: #c3c3c3;
+      display: flex;
+    }
+    aside, section: {
+      height: 100vh;
+    }
+    aside: {
+      width: 30vw;
+    }
+    section {     
+      width: 100vw;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      font-weight: lighter;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <aside>
+      <label for="nome">Informe seu nome</label>
+      <input type="text" name="nome" id="nome" value="" />
+      <label for="nome">Informe o guichê</label>
+      <input type="number" name="guiche" id="guiche" value="" />
+      <input type="button" value="processar" onclick="processar()" />
+    </aside>
+    <section id="resultado">
+      
+    </section>
+  </main>
+</body>
+
+	<script type="text/javascript">
+    const processar = () => {
+      const nome = document.getElementById('nome').value
+      const guiche = document.getElementById('guiche')
+      const resultado = document.getElementById('resultado')
+      resultado.innerHTML = '<h1>' + nome + ' no guichê ' + guiche.value + '</h1>'
+
+      x = 10
+      y = 5
+      z = x>y ? x : y
+      
+    }
+  </script>
+</html>

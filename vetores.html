@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vetores em Javascript</title>
+</head>
+<body>
+
+  <p id="carrinho"></p>
+  <ul id="produtos">
+  </ul>
+
+  <script>
+    var cart = []
+
+    function addCart(item) {
+      cart.push(item)
+      exibirTotalCarrinho()
+    }
+
+    function exibirTotalCarrinho() {
+      const carrinho = document.getElementById('carrinho')
+      carrinho.innerText = cart.length === 0 
+                          ? 'Seu carrinho está vazio' 
+                          : 'Seu carrinho tem ' + cart.length + ' itens'
+    }
+
+    function init() {
+      const produtos = ['mamao', 'banana', 'melao']
+      const lista = document.getElementById('produtos')
+      console.log(lista.innerHTML)
+      for (let i = 0; i < produtos.length; i++) {
+        lista.innerHTML += '<li onClick="addCart(this.innerText)">'+produtos[i]+'</li>'
+      }
+    }
+
+    init()  
+    exibirTotalCarrinho()
+
+  </script>
+  
+</body>
+</html>
