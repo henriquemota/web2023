@@ -25,9 +25,13 @@
             <th>Produto</th>
             <th>&nbsp;</th>
           </tr>
+          <tr>
+            <th colspan="100">
+              <button type="button" class="btn btn-danger" onclick="excluirTodos()">Excluir todos</button>
+            </th>
+          </tr>
         </thead>
         <tbody>
-
         </tbody>
       </table>
     </aside>
@@ -44,8 +48,8 @@
 
     function removeItem(index) {
       if (confirm('Deseja realmente excluir?')) {
-        delete cart[index]
-        // cart.splice(1, index)
+        // delete cart[index]
+        cart.splice(index, 1)
         exibirCarrinho()
         exibirTotalCarrinho()
       }
@@ -72,6 +76,7 @@
         tbody[0].innerHTML += `
           <tr>
             <td>${i+1}</td>  
+            <td><input type="checkbox" class="checkbox" value="${i}" /></td>  
             <td>${cart[i]}</td>  
             <td class="d-grid">
               <button class="btn btn-danger" onClick="removeItem(${i})">
@@ -80,6 +85,17 @@
             </td>  
           </tr>
         `
+      }
+    }
+
+    function excluirTodos() {
+      const checkbox = document.getElementsByClassName('checkbox')
+      if (confirm('Deseja realmente excluir os itens?')) {
+        for (let i = 0; i < checkbox.length; i++) {
+          if (checkbox[i].checked) cart.splice(checkbox[i].value, 1)
+        }
+        exibirCarrinho()
+        exibirTotalCarrinho()
       }
     }
 
