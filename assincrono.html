@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requisições assincronas</title>
+
+  <script>
+    function getLatLon() {
+      const txt = document.getElementById("search")
+      const labels = document.getElementsByTagName("label")
+      const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=2&'
+
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url.concat(`q=${txt.value}`), true);
+      xhr.onload = function(e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            const [{display_name, lat, lon}] = JSON.parse(xhr.responseText);
+            labels[0].innerText = 'endereço ' + display_name
+            labels[1].innerText = 'lat '+ lat
+            labels[2].innerText = 'lon ' +lon
+          } else {
+            labels[0].innerText = 'erro: ' + xhr.statusText
+          }
+        }
+      };
+      xhr.onerror = function(e) {
+        labels[0].innerText = 'erro: ' + xhr.statusText
+      };
+      xhr.send(null);
+    }
+  </script>
+
+</head>
+<body>
+  <form>
+    <input id="search" type="search"  />
+    <button type="button" onclick="getLatLon()">Pesquisar</button>
+  </form>
+
+  <div id="endereco">
+    <p><label id='display_name'></label></p>
+    <p><label id='lat'></label></p>
+    <p><label id='lon'></label></p>
+  </div>
+    
+</body>
+</html>
