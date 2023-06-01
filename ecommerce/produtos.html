@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requisições assincronas</title>
+</head>
+<body>
+  
+  <ul>
+  </ul>
+
+  <script>
+    const ul = document.getElementsByTagName('ul')
+    fetch("json/produtos.php", {method: 'get'})
+    .then(function(response) {
+        response.json()
+        .then(function(data) {
+          data.forEach(element => {
+            ul[0].innerHTML += `<li>${element.nome} - ${element.valor}</li>`
+          });
+        })
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+  
+</script>
+    
+</body>
+</html>
