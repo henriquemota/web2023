@@ -8,9 +8,12 @@
 
   <script>
     function getLatLon() {
+      const btn = document.getElementById("button")
       const txt = document.getElementById("search")
       const labels = document.getElementsByTagName("label")
       const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=2&'
+
+      btn.disabled = true
 
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url.concat(`q=${txt.value}`), true);
@@ -25,9 +28,11 @@
             labels[0].innerText = 'erro: ' + xhr.statusText
           }
         }
+        btn.disabled = false
       };
       xhr.onerror = function(e) {
         labels[0].innerText = 'erro: ' + xhr.statusText
+        btn.disabled = false
       };
       xhr.send(null);
     }
@@ -37,7 +42,7 @@
 <body>
   <form>
     <input id="search" type="search"  />
-    <button type="button" onclick="getLatLon()">Pesquisar</button>
+    <button id="button" type="button" onclick="getLatLon()">Pesquisar</button>
   </form>
 
   <div id="endereco">

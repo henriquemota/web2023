@@ -5,8 +5,51 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Busca CEP</title>
+
+  <script>
+    function buscaCEP() {
+      const txt = document.getElementById("search")
+      const btn = document.getElementById("btn")
+      const lbl = document.getElementsByTagName("label")
+      const URL = "https://viacep.com.br/ws/"
+
+      btn.disabled = true
+      fetch(URL.concat(txt.value, "/json"), {method: 'get'})
+        .then(function(response) {
+          response.json()
+          .then(function(data) {
+            const {cep, logradouro, bairro, localidade, ddd} = data
+            lbl[0].innerText = cep
+            lbl[1].innerText = logradouro
+            lbl[2].innerText = bairro
+            lbl[3].innerText = localidade
+            lbl[4].innerText = ddd
+          })
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+        .finally(function() { 
+          btn.disabled = false
+        })
+    }
+  </script>
+
 </head>
 <body>
+
+  <form>
+    <input type="search" id="search" />
+    <button type="button" id="btn" onclick="buscaCEP()">Localizar CEP</button>
+  </form>
+
+  <div>
+    <p><label></label></p>
+    <p><label></label></p>
+    <p><label></label></p>
+    <p><label></label></p>
+    <p><label></label></p>
+  </div>
   
 </body>
 </html>
